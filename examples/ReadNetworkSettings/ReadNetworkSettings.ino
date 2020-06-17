@@ -26,7 +26,7 @@ void setup()
 	/* If you want to invalidate the image after first run, uncomment this
 	 * Because Duemilanove doesn't have auto-reset, don't uncomment this or
 	 * you will invalidate the image before you open the serial console */
-	//EEPROM.WriteImgBad();
+	//EEPROM.writeImgBad();
 
 	Serial.println("Settings read, you can now upload another sketch.");
 }
