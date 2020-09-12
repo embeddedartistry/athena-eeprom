@@ -42,7 +42,7 @@
 
 /* Athena EEPROM values */
 #define ATHENA_MAJVER 1
-#define ATHENA_MINVER 0
+#define ATHENA_MINVER 1
 
 #define NETEEPROM_IMG_OK_VALUE (0xEE)
 #define NETEEPROM_IMG_BAD_VALUE (0xFF)
