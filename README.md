@@ -6,11 +6,7 @@ The Athena bootloader requires space in the EEPROM. Devices which are also using
 
 If you are using the default EEPROM library for our own purposes, you **must** start writing after `NETEEPROM_END`, available in `AthenaEEPROM_defs.h`:
 
-```
-#define NETEEPROM_END      63
-```
-
-Note that use of the Athena bootloader does reduce the maximum EEPROM capacity by 63 bytes.
+Note that use of the Athena bootloader does reduce the maximum available EEPROM capacity for the application by `NETEEPROM_END-1` bytes.
 
 In addition to reading and writing data from the EEPROM, this library also enables you to read/write network settings using the Arduino EEPROM. These network settings are used by the Athena bootloader and AthenaEthernetReset library.
 
@@ -38,15 +34,11 @@ And read a byte using the `read` API:
 byte value = EEPROM.read(address);
 ```
 
-This library automatically handles the offset that protects Athena-specific EEPROM data. The actual size of the EEPROM available to your program is reduced by `ATHENA_OFFSET` bytes, defined in `AthenaEEPROM.h`.
+This library automatically handles the offset that protects Athena-specific EEPROM data. The actual size of the EEPROM available to your program is reduced by `NETEEPROM_OFFSET` bytes, defined in `AthenaEEPROM.h`.
 
 ## EEPROM Memory Requirements
 
-This library uses the Arduino EEPROM to store values needed by the bootloader and AthenaEthernetReset server. If you are using the default EEPROM library for our own purposes, please make sure to start writing after `NETEEPROM_END`, available in `AthenaEEPROM_defs.h`:
-
-```
-#define NETEEPROM_END      63
-```
+This library uses the Arduino EEPROM to store values needed by the bootloader and AthenaEthernetReset server. If you are using the default EEPROM library for our own purposes, please make sure to start writing after `NETEEPROM_END`, available in `AthenaEEPROM_defs.h`.
 
 If you use the AthenaEEPROM library included with the Athena bootloader, then offsets will be handled for you automatically.
 

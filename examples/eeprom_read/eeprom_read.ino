@@ -34,8 +34,8 @@ void loop()
   // advance to the next address of the EEPROM
   address = address + 1;
 
-  // there are only 512 bytes of EEPROM, and we lose ATHENA_OFFSET bytes
-  if (address == (512 - ATHENA_OFFSET))
+  // there are only 512 bytes of EEPROM, and we lose NETEEPROM_OFFSET bytes
+  if (address == (512 - NETEEPROM_OFFSET))
     address = 0;
 
   delay(500);

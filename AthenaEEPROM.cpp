@@ -28,7 +28,7 @@ AthenaEEPROMClass::AthenaEEPROMClass()
 {
 	if(read(ATHENA_SIGPOS, 0) == ATHENA_SIGVAL)
 	{
-		_offset = ATHENA_OFFSET;
+		_offset = NETEEPROM_OFFSET;
 	}
 	else
 	{
