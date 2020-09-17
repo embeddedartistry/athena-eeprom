@@ -41,46 +41,6 @@
 
 class AthenaEEPROMClass
 {
-  protected:
-	uint8_t read(int, uint8_t);
-	void write(int, uint8_t, uint8_t);
-
-  private:
-	/*
-	 * Network functions
-	 */
-	/** Write signature bytes in eeprom, informing the bootloader that
-	 *  the network settings will be loaded from the eeprom */
-	void writeNetSig();
-	/** Generic function to write IP addresses to EEPROM */
-	void writeAddr(IPAddress addr, byte start);
-	/** Write MAC address to EEPROM.
-	 *  @param mac pointer to byte array where the MAC address is stored. */
-	void writeMAC(byte* mac);
-	/** Write IP to EEPROM.
-	 *  @param ip IPAddress object with the IP to set for the Arduino. */
-	void writeIP(IPAddress ip);
-	/** Write gateway to EEPROM.
-	 *  @param gw IPAddress object with the IP of the Gateway. */
-	void writeGW(IPAddress gw);
-	/** Write subnet mask to EEPROM.
-	 *  @param sn IPAddress object with the Subnet Mask. */
-	void writeSN(IPAddress sn);
-	/** Basic method to read addresses used in public functions */
-	IPAddress readAddr(byte start);
-
-	/*
-	 * Port functions
-	 */
-	/** Write port signature byte to enable reading the TFTP data port from the bootloader */
-	void writePortSig();
-
-	/*
-	 * Password functions
-	 */
-	/** Write password signature to enable reading of password from EEPROM */
-	void writePassSig();
-
   public:
 	AthenaEEPROMClass();
 
@@ -193,6 +153,46 @@ class AthenaEEPROMClass
 	void print(HardwareSerial* serial);
 	/** Print all bootloader settings. Printing defaults if unset */
 	void printAll(HardwareSerial* serial);
+
+  protected:
+	uint8_t read(int, uint8_t);
+	void write(int, uint8_t, uint8_t);
+
+  private:
+	/*
+	 * Network functions
+	 */
+	/** Write signature bytes in eeprom, informing the bootloader that
+	 *  the network settings will be loaded from the eeprom */
+	void writeNetSig();
+	/** Generic function to write IP addresses to EEPROM */
+	void writeAddr(IPAddress addr, byte start);
+	/** Write MAC address to EEPROM.
+	 *  @param mac pointer to byte array where the MAC address is stored. */
+	void writeMAC(byte* mac);
+	/** Write IP to EEPROM.
+	 *  @param ip IPAddress object with the IP to set for the Arduino. */
+	void writeIP(IPAddress ip);
+	/** Write gateway to EEPROM.
+	 *  @param gw IPAddress object with the IP of the Gateway. */
+	void writeGW(IPAddress gw);
+	/** Write subnet mask to EEPROM.
+	 *  @param sn IPAddress object with the Subnet Mask. */
+	void writeSN(IPAddress sn);
+	/** Basic method to read addresses used in public functions */
+	IPAddress readAddr(byte start);
+
+	/*
+	 * Port functions
+	 */
+	/** Write port signature byte to enable reading the TFTP data port from the bootloader */
+	void writePortSig();
+
+	/*
+	 * Password functions
+	 */
+	/** Write password signature to enable reading of password from EEPROM */
+	void writePassSig();
 
   private:
 	uint8_t _offset;
