@@ -228,6 +228,27 @@ IPAddress AthenaEEPROMClass::readSN(void)
 	return (sn);
 }
 
+ver_t AthenaEEPROMClass::readBootloaderVersion(void)
+{
+	ver_t version;
+
+	version.major_ver = read(NETEEPROM_ATHENA_VER_MAJOR, 0);
+	version.minor_ver = read(NETEEPROM_ATHENA_VER_MINOR, 0);
+	version.patch_ver = read(NETEEPROM_ATHENA_VER_PATCH, 0);
+
+	return version;
+}
+
+ver_t AthenaEEPROMClass::readEEPROMFormatVersion(void)
+{
+	ver_t version;
+
+	version.major_ver = read(NETEEPROM_MAJVER, 0);
+	version.minor_ver = read(NETEEPROM_MINVER, 0);
+
+	return version;
+}
+
 void AthenaEEPROMClass::printNet(HardwareSerial* serial)
 {
 	serial->println("--- Network Settings ---");

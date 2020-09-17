@@ -39,6 +39,12 @@ class AthenaEEPROMClass
   public:
 	AthenaEEPROMClass();
 
+	struct ver_t {
+		uint8_t major_ver;
+		uint8_t minor_ver;
+		uint8_t patch_ver;
+	};
+
 	/*
 	 * General EEPROM Interface
 	 */
@@ -101,6 +107,16 @@ class AthenaEEPROMClass
 	/** Read Subnet Mask
 	 *  @return IPAddress object with the Subnet Mask. */
 	IPAddress readSN(void);
+	/** Read bootloader version
+	*	@return ver_t object with bootloader major.minor.patch version
+	*/
+	ver_t readBootloaderVersion(void);
+	/** Read EEPROM storage format version
+	* @return ver_t object with the EEPROM storage format's major.minor version.
+	*	Note that patch will always be 0 for this version information.
+	*/
+	ver_t readEEPROMFormatVersion(void);
+
 	/** Print the network settings. Serial needs to be initalized in the sketch
 	 *  @param serial pointer to the initialized serial (use &Serial) */
 	void printNet(HardwareSerial* serial);
