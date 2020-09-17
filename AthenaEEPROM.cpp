@@ -128,12 +128,12 @@ void AthenaEEPROMClass::writePassSig()
  */
 void AthenaEEPROMClass::writeImgBad(void)
 {
-	write(NETEEPROM_IMG_STAT, NETEEPROM_IMG_BAD_VALUE, 0); // Image status set to invalid
+	write(NETEEPROM_IMG_STAT, NETEEPROM_IMG_BAD_VALUE, 0);
 }
 
 void AthenaEEPROMClass::writeImgOk(void)
 {
-	write(NETEEPROM_IMG_STAT, NETEEPROM_IMG_OK_VALUE, 0); // Image status set to valid
+	write(NETEEPROM_IMG_STAT, NETEEPROM_IMG_OK_VALUE, 0)
 }
 
 void AthenaEEPROMClass::enableUpdateMode(void)
