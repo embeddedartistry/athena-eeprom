@@ -135,7 +135,7 @@ void AthenaEEPROMClass::writeImgBad(void)
 
 void AthenaEEPROMClass::writeImgOk(void)
 {
-	write(NETEEPROM_IMG_STAT, NETEEPROM_IMG_OK_VALUE, 0)
+	write(NETEEPROM_IMG_STAT, NETEEPROM_IMG_OK_VALUE, 0);
 }
 
 void AthenaEEPROMClass::enableUpdateMode(void)
@@ -232,7 +232,7 @@ IPAddress AthenaEEPROMClass::readSN(void)
 	return (sn);
 }
 
-ver_t AthenaEEPROMClass::readBootloaderVersion(void)
+AthenaEEPROMClass::ver_t AthenaEEPROMClass::readBootloaderVersion(void)
 {
 	ver_t version;
 
@@ -243,7 +243,7 @@ ver_t AthenaEEPROMClass::readBootloaderVersion(void)
 	return version;
 }
 
-ver_t AthenaEEPROMClass::readEEPROMFormatVersion(void)
+AthenaEEPROMClass::ver_t AthenaEEPROMClass::readEEPROMFormatVersion(void)
 {
 	ver_t version;
 
