@@ -60,7 +60,7 @@ void AthenaEEPROMClass::write(int address, uint8_t value)
 }
 
 /*
- * Netowork functions
+ * Network functions
  */
 void AthenaEEPROMClass::writeNetSig(void)
 {
@@ -71,7 +71,9 @@ void AthenaEEPROMClass::writeNetSig(void)
 void AthenaEEPROMClass::writeAddr(IPAddress addr, byte start)
 {
 	for(byte i = 0; i < 4; i++)
+	{
 		write(i + start, addr[i], 0);
+	}
 }
 
 void AthenaEEPROMClass::writeIP(IPAddress ip)
@@ -93,8 +95,11 @@ IPAddress AthenaEEPROMClass::readAddr(byte start)
 {
 	byte octet[4];
 	for(byte i = 0; i < 4; i++)
+	{
 		octet[i] = read(i, start);
+	}
 	IPAddress Addr(octet);
+
 	return (Addr);
 }
 
@@ -131,7 +136,7 @@ void AthenaEEPROMClass::writeImgOk(void)
 	write(NETEEPROM_IMG_STAT, NETEEPROM_IMG_OK_VALUE, 0); // Image status set to valid
 }
 
-/* Netowork functions */
+/* Network functions */
 void AthenaEEPROMClass::eraseNetSig(void)
 {
 	write(NETEEPROM_SIG_1, 0, 0); // Unset signature 1 to load built-in settings
@@ -141,7 +146,9 @@ void AthenaEEPROMClass::eraseNetSig(void)
 void AthenaEEPROMClass::writeMAC(byte* mac)
 {
 	for(byte i = 0; i < 6; i++)
+	{
 		write(i + NETEEPROM_MAC, mac[i], 0);
+	}
 }
 
 void AthenaEEPROMClass::writeNet(byte* mac, IPAddress ip, IPAddress gw, IPAddress sn)
@@ -171,8 +178,12 @@ byte* AthenaEEPROMClass::readMAC(void)
 	memcpy((void*)mac, (void*)default_mac, 6);
 
 	if(netSigIsSet())
+	{
 		for(byte i = 0; i < 6; i++)
+		{
 			mac[i] = read(i, NETEEPROM_MAC);
+		}
+	}
 
 	return (mac);
 }
@@ -181,7 +192,10 @@ IPAddress AthenaEEPROMClass::readIP(void)
 {
 	IPAddress ip(DEFAULT_IP_ADDR);
 	if(netSigIsSet())
+	{
 		ip = readAddr(NETEEPROM_IP);
+	}
+
 	return ip;
 }
 
@@ -189,7 +203,10 @@ IPAddress AthenaEEPROMClass::readGW(void)
 {
 	IPAddress gw(DEFAULT_GW_ADDR);
 	if(netSigIsSet())
+	{
 		gw = readAddr(NETEEPROM_GW);
+	}
+
 	return (gw);
 }
 
@@ -197,7 +214,10 @@ IPAddress AthenaEEPROMClass::readSN(void)
 {
 	IPAddress sn(DEFAULT_SUB_MASK);
 	if(netSigIsSet())
+	{
 		sn = readAddr(NETEEPROM_SN);
+	}
+
 	return (sn);
 }
 
@@ -212,9 +232,13 @@ void AthenaEEPROMClass::printNet(HardwareSerial* serial)
 		serial->print("0x");
 		serial->print(mac[i], HEX);
 		if(i != 5)
+		{
 			serial->print(".");
+		}
 		else
+		{
 			serial->println();
+		}
 	}
 	free(mac);
 
@@ -247,9 +271,13 @@ void AthenaEEPROMClass::writePort(word port)
 bool AthenaEEPROMClass::portSigIsSet(void)
 {
 	if(read(NETEEPROM_SIG_3, 0) == NETEEPROM_SIG_3_VALUE)
+	{
 		return (true);
+	}
 	else
+	{
 		return (false);
+	}
 }
 
 word AthenaEEPROMClass::readPort(void)
@@ -261,7 +289,9 @@ word AthenaEEPROMClass::readPort(void)
 		return (makeWord(hiByte, loByte));
 	}
 	else
+	{
 		return (46969);
+	}
 }
 
 void AthenaEEPROMClass::printPort(HardwareSerial* serial)
