@@ -12,7 +12,7 @@ In addition to reading and writing data from the EEPROM, this library also enabl
 
 You must program the device with the proper network settings in order for the Athena bootloader and AthenaEthernetReset library to properly function.
 
-## Using the Library
+## Converting to the Library
 
 To use the library, include `AthenaEEPROM.h` instead of `EEPROM.h`:
 
@@ -20,9 +20,9 @@ To use the library, include `AthenaEEPROM.h` instead of `EEPROM.h`:
 #include <AthenaEEPROM.h>
 ```
 
-The library provides a global instance called `EEPROM`. 
+The library provides a global instance called `EEPROM` that serves as a drop-in replacement for the standard `EEPROM` object provided by `EEPROM.h`.
 
-You can write a byte with the `write` API:
+The standard interfaces still work. You can write a byte with the `write` API:
 
 ```
 EEPROM.write(addr, val);
@@ -35,6 +35,8 @@ byte value = EEPROM.read(address);
 ```
 
 This library automatically handles the offset that protects Athena-specific EEPROM data. The actual size of the EEPROM available to your program is reduced by `NETEEPROM_OFFSET` bytes, defined in `AthenaEEPROM.h`.
+
+For more information on migrating an existing application that uses the EEPROM, see the [migration guide](docs/eeprom_migration_guide.md).
 
 ## EEPROM Memory Requirements
 
