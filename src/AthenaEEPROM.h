@@ -20,12 +20,12 @@
 #ifndef AthenaEEPROM_h
 #define AthenaEEPROM_h
 
+#include "AthenaEEPROM_defs.h"
 #include <Arduino.h>
 #include <HardwareSerial.h>
 #include <IPAddress.h>
 #include <avr/pgmspace.h>
 #include <inttypes.h>
-#include "AthenaEEPROM_defs.h"
 
 #define pgm_uchar(name) static const unsigned char name[] PROGMEM
 
@@ -40,7 +40,8 @@ class AthenaEEPROMClass
   public:
 	AthenaEEPROMClass();
 
-	struct ver_t {
+	struct ver_t
+	{
 		uint8_t major_ver;
 		uint8_t minor_ver;
 		uint8_t patch_ver;
@@ -72,12 +73,12 @@ class AthenaEEPROMClass
 	void writeImgOk(void);
 
 	/** Enable Update Mode
-	* When the device is reset, the bootloader will enter update mode
-	* and wait for an image over TFTP or serial. If the device resets before
-	* an image is received, it will boot the currently programmed application.
-	*
-	* This function does not reset the device!
-	*/
+	 * When the device is reset, the bootloader will enter update mode
+	 * and wait for an image over TFTP or serial. If the device resets before
+	 * an image is received, it will boot the currently programmed application.
+	 *
+	 * This function does not reset the device!
+	 */
 	void enableUpdateMode(void);
 
 	/** @name Networking
@@ -109,13 +110,13 @@ class AthenaEEPROMClass
 	 *  @return IPAddress object with the Subnet Mask. */
 	IPAddress readSN(void);
 	/** Read bootloader version
-	*	@return ver_t object with bootloader major.minor.patch version
-	*/
+	 *	@return ver_t object with bootloader major.minor.patch version
+	 */
 	ver_t readBootloaderVersion(void);
 	/** Read EEPROM storage format version
-	* @return ver_t object with the EEPROM storage format's major.minor version.
-	*	Note that patch will always be 0 for this version information.
-	*/
+	 * @return ver_t object with the EEPROM storage format's major.minor version.
+	 *	Note that patch will always be 0 for this version information.
+	 */
 	ver_t readEEPROMFormatVersion(void);
 
 	/** Print the network settings. Serial needs to be initalized in the sketch
