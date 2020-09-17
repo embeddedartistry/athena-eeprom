@@ -94,11 +94,29 @@ class AthenaEEPROMClass
 	 * Image status functions
 	 */
 	/** Set the flashed image status to bad, to prevent the bootloader
-	 *  from timing out */
+	 *  from timing out. Writing the "bad" indicator
+	 *  is permanent, and the bootloader will not boot an application
+	 *  until a new one is programmed.
+	 *
+	 * This function does not reset the device!
+	 */
 	void writeImgBad(void);
+
 	/** Set the flashed image status to good, to allow the bootloader
-	 *  to load the program in memory */
+	 *  to load the program stored in memory.
+	 *
+	 * This function does not reset the device!
+	 */
 	void writeImgOk(void);
+
+	/** Enable Update Mode
+	* When the device is reset, the bootloader will enter update mode
+	* and wait for an image over TFTP or serial. If the device resets before
+	* an image is received, it will boot the currently programmed application.
+	*
+	* This function does not reset the device!
+	*/
+	void enableUpdateMode(void);
 
 	/** @name Networking
 	 * Network functions

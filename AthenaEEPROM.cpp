@@ -136,6 +136,11 @@ void AthenaEEPROMClass::writeImgOk(void)
 	write(NETEEPROM_IMG_STAT, NETEEPROM_IMG_OK_VALUE, 0); // Image status set to valid
 }
 
+void AthenaEEPROMClass::enableUpdateMode(void)
+{
+	write(NETEEPROM_IMG_STAT, NETEEPROM_ENTER_UPDATE_MODE_VALUE, 0);
+}
+
 /* Network functions */
 void AthenaEEPROMClass::eraseNetSig(void)
 {
