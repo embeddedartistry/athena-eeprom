@@ -172,9 +172,13 @@ bool AthenaEEPROMClass::netSigIsSet(void)
 {
 	if((read(NETEEPROM_SIG_1, 0) == NETEEPROM_SIG_1_VALUE) &&
 	   (read(NETEEPROM_SIG_2, 0) == NETEEPROM_SIG_2_VALUE))
+	{
 		return (true);
+	}
 	else
+	{
 		return (false);
+	}
 }
 
 byte* AthenaEEPROMClass::readMAC(void)
@@ -344,10 +348,14 @@ void AthenaEEPROMClass::writePass(String passwd)
 	uint8_t pass_size = passwd.length();
 
 	if(pass_size > (NETEEPROM_END - NETEEPROM_PASS))
+	{
 		pass_size = NETEEPROM_END - NETEEPROM_PASS;
+	}
 
 	for(i = 0; i < pass_size; i++)
+	{
 		write(i, passwd.charAt(i), NETEEPROM_PASS);
+	}
 	write(pass_size, '\0', NETEEPROM_PASS);
 
 	writePassSig();
@@ -356,9 +364,13 @@ void AthenaEEPROMClass::writePass(String passwd)
 bool AthenaEEPROMClass::passSigIsSet(void)
 {
 	if(read(NETEEPROM_SIG_4, 0) == NETEEPROM_SIG_4_VALUE)
+	{
 		return (true);
+	}
 	else
+	{
 		return (false);
+	}
 }
 
 String AthenaEEPROMClass::readPass(void)
@@ -371,13 +383,17 @@ String AthenaEEPROMClass::readPass(void)
 		char passwd[NETEEPROM_END - NETEEPROM_PASS + 1];
 
 		while((c = read(i, NETEEPROM_PASS)) != '\0')
+		{
 			passwd[i++] = c;
+		}
 		passwd[i] = '\0';
 
 		password = passwd;
 	}
 	else
+	{
 		password = "athena";
+	}
 
 	return password;
 }
@@ -399,26 +415,38 @@ void AthenaEEPROMClass::printPass(HardwareSerial* serial)
 void AthenaEEPROMClass::print(HardwareSerial* serial)
 {
 	if(netSigIsSet())
+	{
 		printNet(serial);
+	}
 	if(portSigIsSet())
+	{
 		printPort(serial);
+	}
 	if(passSigIsSet())
+	{
 		printPass(serial);
+	}
 }
 
 void AthenaEEPROMClass::printAll(HardwareSerial* serial)
 {
 	printNet(serial);
 	if(!netSigIsSet())
+	{
 		serial->println("(Defaults)");
+	}
 
 	printPort(serial);
 	if(!portSigIsSet())
+	{
 		serial->println("(Default)");
+	}
 
 	printPass(serial);
 	if(!passSigIsSet())
+	{
 		serial->println("(No password)");
+	}
 }
 
 AthenaEEPROMClass EEPROM;
