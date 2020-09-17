@@ -25,6 +25,7 @@
 #include <IPAddress.h>
 #include <avr/pgmspace.h>
 #include <inttypes.h>
+#include "AthenaEEPROM_defs.h"
 
 #define pgm_uchar(name) static const unsigned char name[] PROGMEM
 

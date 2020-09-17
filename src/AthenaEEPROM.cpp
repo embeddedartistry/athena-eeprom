@@ -18,7 +18,6 @@
  */
 
 #include "AthenaEEPROM.h"
-#include "AthenaEEPROM_defs.h"
 
 #define NO_OFFSET (0x00)
 
