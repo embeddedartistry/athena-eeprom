@@ -20,13 +20,15 @@
 #include "AthenaEEPROM.h"
 #include "AthenaEEPROM_defs.h"
 
+#define NO_OFFSET (0x00)
+
 /****************************************************
  * Definitions                                      *
  ****************************************************/
 
 AthenaEEPROMClass::AthenaEEPROMClass()
 {
-	if(read(ATHENA_SIGPOS, 0) == ATHENA_SIGVAL)
+	if(read(NETEEPROM_IMG_STAT, 0) == NETEEPROM_IMG_OK_VALUE)
 	{
 		_offset = NETEEPROM_OFFSET;
 	}

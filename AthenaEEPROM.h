@@ -26,10 +26,6 @@
 #include <avr/pgmspace.h>
 #include <inttypes.h>
 
-#define ATHENA_SIGPOS (0x02)
-#define ATHENA_SIGVAL (0xEE)
-#define NO_OFFSET (0x00)
-
 #define pgm_uchar(name) static const unsigned char name[] PROGMEM
 
 #ifdef DEBUG
