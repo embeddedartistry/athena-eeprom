@@ -81,6 +81,24 @@ class AthenaEEPROMClass
 	 */
 	void enableUpdateMode(void);
 
+	/** Tell the bootloader to use a custom CS pin for the Ethernet chip
+	 *
+	 * The bootloader uses default settings, but custom boards may require
+	 * an alternate assignment.
+	 *
+	 * @input pin The Arduino pin number of the Ethernet CS pin (e.g., 53)
+	 */
+	void setEthernetCSPin(uint8_t pin);
+
+	/** Tell the bootloader to use a custom reset pin for the Ethernet chip
+	 *
+	 * By default, the bootloader does not reset the Ethernet controller.
+	 * Use this function to set a reset pin, enabling reset behavior in the bootloader.
+	 *
+	 * @input pin The Arduino pin number of the Ethernet CS pin (e.g., 53)
+	 */
+	void setEthernetResetPin(uint8_t pin);
+
 	/** @name Networking
 	 * Network functions
 	 */

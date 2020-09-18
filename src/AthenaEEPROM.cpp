@@ -92,6 +92,16 @@ void AthenaEEPROMClass::writeSN(IPAddress sn)
 	writeAddr(sn, NETEEPROM_SN);
 }
 
+void AthenaEEPROMClass::setEthernetCSPin(uint8_t pin)
+{
+	write(NETEEPROM_ETHERNET_CS_PIN, pin, 0);
+}
+
+void AthenaEEPROMClass::setEthernetResetPin(uint8_t pin)
+{
+	write(NETEEPROM_ETHERNET_RESET_PIN, pin, 0);
+}
+
 IPAddress AthenaEEPROMClass::readAddr(byte start)
 {
 	byte octet[4];
